@@ -25,6 +25,7 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -78,14 +79,28 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         TextView magTextView = (TextView) listItemView.findViewById(R.id.mag_value);
         // Get the version name from the current Earthquake object and
         // set this text on the name TextView
-        String mag = Double.toString(currentEarthquake.getMagValue());
+        DecimalFormat formatter = new DecimalFormat("0.0");
+        String mag = formatter.format(currentEarthquake.getMagValue());
         magTextView.setText(mag);
 
         // Find the TextView in the list_item.xml layout with the ID version_number
-        TextView cityTextView = (TextView) listItemView.findViewById(R.id.city_name);
+        TextView offsetLocTextView = (TextView) listItemView.findViewById(R.id.offset_location);
+        TextView primaryLocTextView = (TextView) listItemView.findViewById(R.id.primary_location);
+        String fullLocation = currentEarthquake.getFullLocation();
+        String offsetLocation = "";
+        String primaryLocation = "";
+        if(fullLocation.contains("of")){
+            String[] strArray = fullLocation.split("of");
+            offsetLocation = strArray[0] + " of";
+            primaryLocation = strArray[1];
+        } else {
+            primaryLocation = fullLocation;
+        }
         // Get the version number from the current Earthquake object and
         // set this text on the number TextView
-        cityTextView.setText(currentEarthquake.getCityName());
+        offsetLocTextView.setText(offsetLocation);
+        primaryLocTextView.setText(primaryLocation);
+
 
         // formatting the time to display with style
         long dateInMilliseconds = currentEarthquake.getDateValue();

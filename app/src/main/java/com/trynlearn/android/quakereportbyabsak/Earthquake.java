@@ -5,17 +5,17 @@ package com.trynlearn.android.quakereportbyabsak;
  */
 public class Earthquake {
     private double magValue;
-    private String cityName;
+    private String fullLocation;
     private long dateValue;
 
     public Earthquake(double magValue, String cityName, long dateValue){
         this.magValue = magValue;
-        this.cityName = cityName;
+        this.fullLocation = cityName;
         this.dateValue = dateValue;
     }
 
-    public String getCityName() {
-        return cityName;
+    public String getFullLocation() {
+        return fullLocation;
     }
 
     public long getDateValue() {
