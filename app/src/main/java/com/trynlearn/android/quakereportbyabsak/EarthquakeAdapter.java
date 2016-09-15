@@ -16,6 +16,7 @@ package com.trynlearn.android.quakereportbyabsak;
  */
 
 import android.app.Activity;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import android.graphics.drawable.GradientDrawable;
 
 /*
 * {@link EarthquakeAdapter} is an {@link ArrayAdapter} that can provide the layout for each list
@@ -83,6 +85,16 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         String mag = formatter.format(currentEarthquake.getMagValue());
         magTextView.setText(mag);
 
+        // Set the proper background color on the magnitude circle.
+        // Fetch the background from the TextView, which is a GradientDrawable.
+        GradientDrawable magnitudeCircle = (GradientDrawable) magTextView.getBackground();
+
+        // Get the appropriate background color based on the current earthquake magnitude
+        int magnitudeColor = getMagnitudeColor(currentEarthquake.getMagValue());
+
+        // Set the color on the magnitude circle
+        magnitudeCircle.setColor(magnitudeColor);
+
         // Find the TextView in the list_item.xml layout with the ID version_number
         TextView offsetLocTextView = (TextView) listItemView.findViewById(R.id.offset_location);
         TextView primaryLocTextView = (TextView) listItemView.findViewById(R.id.primary_location);
@@ -120,6 +132,45 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         // Return the whole list item layout (containing 2 TextViews and an ImageView)
         // so that it can be shown in the ListView
         return listItemView;
+    }
+
+    private int getMagnitudeColor(double magValue) {
+        int tempMagValue = (int)magValue;
+        int magnitude1Color = 0;
+        switch (tempMagValue) {
+            case 0:
+            case 1:
+                magnitude1Color = ContextCompat.getColor(getContext(), R.color.magnitude1);
+                break;
+            case 2:
+                magnitude1Color = ContextCompat.getColor(getContext(), R.color.magnitude2);
+                break;
+            case 3:
+                magnitude1Color = ContextCompat.getColor(getContext(), R.color.magnitude3);
+                break;
+            case 4:
+                magnitude1Color = ContextCompat.getColor(getContext(), R.color.magnitude4);
+                break;
+            case 5:
+                magnitude1Color = ContextCompat.getColor(getContext(), R.color.magnitude5);
+                break;
+            case 6:
+                magnitude1Color = ContextCompat.getColor(getContext(), R.color.magnitude6);
+                break;
+            case 7:
+                magnitude1Color = ContextCompat.getColor(getContext(), R.color.magnitude7);
+                break;
+            case 8:
+                magnitude1Color = ContextCompat.getColor(getContext(), R.color.magnitude8);
+                break;
+            case 9:
+                magnitude1Color = ContextCompat.getColor(getContext(), R.color.magnitude9);
+                break;
+            case 10:
+                magnitude1Color = ContextCompat.getColor(getContext(), R.color.magnitude10plus);
+                break;
+        }
+        return magnitude1Color;
     }
 
     private String formatTime(Date dateObject) {
