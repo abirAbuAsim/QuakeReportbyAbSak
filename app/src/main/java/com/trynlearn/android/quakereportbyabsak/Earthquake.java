@@ -7,11 +7,13 @@ public class Earthquake {
     private double magValue;
     private String fullLocation;
     private long dateValue;
+    private String urlName;
 
-    public Earthquake(double magValue, String cityName, long dateValue){
+    public Earthquake(double magValue, String cityName, long dateValue, String urlName){
         this.magValue = magValue;
         this.fullLocation = cityName;
         this.dateValue = dateValue;
+        this.urlName = urlName;
     }
 
     public String getFullLocation() {
@@ -27,5 +29,8 @@ public class Earthquake {
         return magValue;
     }
 
+    public String getUrlName(){
+        return urlName;
+    }
 
 }

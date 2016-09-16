@@ -61,7 +61,8 @@ public final class QueryUtils {
                 double magValue = Double.parseDouble(properties.optString("mag").toString());
                 String placeName = properties.optString("place").toString();
                 Long timeValue = Long.parseLong(properties.optString("time").toString());
-                earthquakes.add(new Earthquake(magValue, placeName, timeValue));
+                String urlName = properties.optString("url");
+                earthquakes.add(new Earthquake(magValue, placeName, timeValue, urlName));
             }
 
         } catch (JSONException e) {

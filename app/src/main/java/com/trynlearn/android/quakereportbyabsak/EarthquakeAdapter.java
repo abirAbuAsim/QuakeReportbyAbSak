@@ -16,22 +16,22 @@ package com.trynlearn.android.quakereportbyabsak;
  */
 
 import android.app.Activity;
+import android.content.Intent;
+import android.graphics.drawable.GradientDrawable;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.text.SimpleDateFormat;
-import android.graphics.drawable.GradientDrawable;
-
+import android.widget.AdapterView.OnItemClickListener;
 /*
 * {@link EarthquakeAdapter} is an {@link ArrayAdapter} that can provide the layout for each list
 * based on a data source, which is a list of {@link Earthquake} objects.
@@ -128,6 +128,8 @@ public class EarthquakeAdapter extends ArrayAdapter<Earthquake> {
         String timeToDisplay = formatTime(dateObject);
         TextView timeTextView = (TextView) listItemView.findViewById(R.id.time_value);
         timeTextView.setText(timeToDisplay);
+
+
 
         // Return the whole list item layout (containing 2 TextViews and an ImageView)
         // so that it can be shown in the ListView
